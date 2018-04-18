@@ -1,6 +1,4 @@
 import angular from 'angular';
-import uirouter from '@uirouter/angularjs';
-import routing from './app.config';
 
 import MovieService from './service/movie.service'
 
@@ -15,11 +13,10 @@ let app = () => {
 };
 
 class AppCtrl {
-    constructor($scope, MovieService, $state, $location, $anchorScroll, $timeout, $q) {
+    constructor($scope, MovieService, $location, $anchorScroll, $timeout, $q) {
 
         this.$scope = $scope;
         this.service = MovieService;
-        this.$state = $state;
         this.$location = $location;
         this.$anchorScroll = $anchorScroll;
         this.$timeout = $timeout;
@@ -117,12 +114,11 @@ class AppCtrl {
 
 
 }
-AppCtrl.$inject = ['$scope', 'MovieService', '$state', '$location', '$anchorScroll', '$timeout', '$q']
+AppCtrl.$inject = ['$scope', 'MovieService', '$location', '$anchorScroll', '$timeout', '$q']
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [uirouter])
-    .config(routing)
+angular.module(MODULE_NAME, [])
     .directive('app', app)
     .controller('AppCtrl', AppCtrl)
     .service('MovieService', MovieService)
