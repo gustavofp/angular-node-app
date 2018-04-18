@@ -5,10 +5,10 @@ export default function routing($urlRouterProvider, $locationProvider, $statePro
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
-    .state('login', {
-      url: '/movie',
-      template: require('./movie/movie.html'),
-      controller: 'MovieCtrl',
-      controllerAs: 'movie'
-    });
+    .state('app', {
+      url: '/',
+      template: require('./app.html'),
+      controller: 'AppCtrl',
+      controllerAs: 'app'
+    })
 }
