@@ -10,7 +10,7 @@ export default class MovieService {
 
 
     getMovies() {
-        return this._$http.get(`${API_URL}/films/`).then(res => res).catch(err => err)
+        return this._$http.get(`${API_URL}/films/`).then(res => res.data).catch(err => err)
     }
 
 }

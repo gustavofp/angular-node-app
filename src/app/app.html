@@ -5,7 +5,19 @@
 </nav>
 <section>
     <div class="row">
-
+        <div ng-repeat="movie in movies" class="col s12 m6">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">{{ movie.title }}</span>
+                <p><span class="bold">Directed by:</span> {{ movie.director }} </p>
+                <p><span class="bold">Produced by:</span> {{ movie.producer }} </p>
+                <p><span class="bold">Release date:</span> {{ movie.release_date | date:'dd-MM-yyyy' }} </p>
+              </div>
+              <div class="card-action">
+                <a ng-click="openDetails()">Details</a>
+              </div>
+            </div>
+          </div>
     </div>
 </section>
 <footer>

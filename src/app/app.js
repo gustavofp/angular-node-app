@@ -1,5 +1,9 @@
 import angular from 'angular';
+import uirouter from '@uirouter/angularjs';
+import routing from './app.config';
 
+import movie from './movie/movie.directive'
+import MovieCtrl from './movie/movie.controller'
 import MovieService from './service/movie.service'
 
 import '../style/app.css';
@@ -13,26 +17,35 @@ let app = () => {
 };
 
 class AppCtrl {
-    constructor(MovieService) {
-        this.url = 'https://github.com/preboot/angular-webpack';
+    constructor($scope, MovieService, $state) {
+
+        this.$scope = $scope;
+        this.$state = $state;
         this.service = MovieService;
 
-        this.movies = [];
+        this.$scope.openDetails = this.openDetails;
 
-        this.getMovies()
+        this.service.getMovies()
+        .then(res => {
+            this.$scope.movies = res.results
+        })
+        .catch(err => err)
     }
 
-    getMovies() {
-        this.service.getMovies().then(res => this.movies = res)
-    };
+   openDetails() {
+    this.$state.go('movie')
+    }
 
 }
 
 const MODULE_NAME = 'app';
 
-angular.module(MODULE_NAME, [])
+angular.module(MODULE_NAME, [uirouter])
     .directive('app', app)
     .controller('AppCtrl', AppCtrl)
+    .directive('movie', movie)
+    .controller('MovieCtrl', MovieCtrl)
     .service('MovieService', MovieService)
+    .config(routing);
 
 export default MODULE_NAME;
