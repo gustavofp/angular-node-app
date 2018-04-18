@@ -13,6 +13,10 @@ export default class MovieService {
         return this._$http.get(`${API_URL}/films/`).then(res => res.data).catch(err => err)
     }
 
+    getByUrl(url) {
+        return this._$http.get(url).then(res => res.data).catch(err => err)
+    }
+
 }
 
 MovieService.$inject = ['$http'];
